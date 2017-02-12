@@ -8,6 +8,7 @@ public class DuplicateFinder {
     public static int duplictes;
     static int count = 0;
     static int numberOfitems = 0;
+    static int charCount = 0;
 
 
     static public void sameLength(String file) {
@@ -28,36 +29,54 @@ public class DuplicateFinder {
 
                 if (split[count].length() == split[count + 1].length()) { //checking lengths
 
-                    for (int i = 0; i < split[count].length()-1; i++) { //counting the patterns in each word
+                    for (int i = 0; i < split[count].length() - 1; i++) { //counting the patterns in each word
 
-                        if (split[count].charAt(i) != split[count].charAt(i+1))
+                        if (split[count].charAt(i) != split[count].charAt(i + 1))
                             localCountfirst++;
 
 
-                            if (split[count + 1].charAt(i) != split[count + 1].charAt(i + 1))
-                                localCountSecond++;
+                        if (split[count + 1].charAt(i) != split[count + 1].charAt(i + 1))
+                            localCountSecond++;
+                    }
+
+                    if (split[count].charAt(split[count].length()-1) == split[count + 1].charAt(split[count+1].length()-1)) { // compare last chars
+
+                        charCount++;
 
                     }
 
-                    if (split[count].length() < 6) { //if less than 6 characters make dup matching more strict
+                    if (split[count].charAt(split[count].length() - 2) == split[count + 1].charAt(split[count].length()-2)) { //compare second to last
 
-                        if (localCountfirst == localCountSecond)
-                            duplictes++;
+                        charCount++;
+
+
                     }
 
-                    if (split[count].length() > 6) { // if more than 6 make dup matching less strict
+                    if (split[count].charAt(1) == split[count + 1].charAt(1)) {
 
-                        if (localCountfirst - localCountSecond <= Math.abs(1))
-                            duplictes++;
+                        charCount++;
                     }
-
                 }
 
-                if(split[count].length() > split[count+1].length() || split[count+1].length() > split[count].length()){
 
-                    int difference = Math.abs(split[count].length() - split[count+1].length());
+                if (split[count].length() < 6 ) { //if less than 6 characters make dup matching more strict
 
-                    for (int i = 0; i < split[count].length()-1; i++) { //counting the patterns in each word
+                    if (localCountfirst == localCountSecond && charCount >= 2)
+                        duplictes++;
+                }
+
+                if (split[count].length() > 6 ) { // if more than 6 make dup matching less strict
+
+                    if (localCountfirst - localCountSecond <= Math.abs(1) )
+                        duplictes++;
+                }
+
+
+                if (split[count].length() > split[count + 1].length() || split[count + 1].length() > split[count].length()) {
+
+                    int difference = Math.abs(split[count].length() - split[count + 1].length());
+
+                    for (int i = 0; i < split[count].length() - 1; i++) { //counting the patterns in each word
 
                         if (split[count].charAt(i) != split[count].charAt(i + 1))
                             localCountfirst++;
@@ -68,28 +87,35 @@ public class DuplicateFinder {
                         }
                     }
 
-                    if (split[count].length() < 6) { //if less than 6 characters make dup matching more strict
+                    if (split[count].length() < 6 && charCount >= 3) { //if less than 6 characters make dup matching more strict
 
-                        if (localCountfirst == localCountSecond)
+                        if (localCountfirst == localCountSecond) {
                             duplictes++;
+                            charCount = 0;
+                        }
                     }
 
-                    if (split[count].length() > 6) { // if more than 6 make dup matching less strict
+                    if (split[count].length() > 6 && charCount >= 3) { // if more than 6 make dup matching less strict
 
-                        if (localCountfirst - localCountSecond <= Math.abs(1))
+                        if (localCountfirst - localCountSecond <= Math.abs(1)) {
                             duplictes++;
+                            charCount =0;
+                        }
                     }
 
                 }
 
-                }count = count + 1;
-
             }
-
+            count = count + 1;
+            charCount =0;
 
         }
 
 
     }
+}
+
+
+
 
 

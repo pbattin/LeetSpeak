@@ -11,21 +11,15 @@ public class DuplicateFinderTest {
     DuplicateFinder find;
 
     @Before
-    public void setup(){
+    public void setup() {
 
         find = new DuplicateFinder();
-        find.sameLength("cookies, c00kIes, cha!r, chair, flair, fla!r, p!pe, pipe, pope, type, typ@@@@@@@@, hook, hawk, h@#k");
-    }
-
+        find.sameLength("jazz,buzz,fuzzs,f@zzs,fu**s,fizzs,hajj,juju,ju##s,quiz,razz,r@zz,jezz,jexxs,je**s,jeux,j@#k,jinx,jock,j&ck,j0$k,jack,jamb,juku,joky,j0ck,j0k$,jivy,junk,jimp");}
     @Test
     public void duplicatesTest(){
 
-        String plit = "cookies, c00kIes, cha!r, chair, flair, fla!r, p!pe, pipe, pope, type, typ@@@@@@@@, hook, hawk, h@#k";
 
-        String[] key =plit.split(",");
-        System.out.println(key[0].toString());
-
-        int expected = 6;
+        int expected = 5;
         int actual = find.duplictes;
         Assert.assertEquals("Testing dup finder", expected, actual);
 

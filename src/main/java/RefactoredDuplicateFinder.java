@@ -14,6 +14,7 @@ public class RefactoredDuplicateFinder {
     private static int stringPatternCountTwo = 0;
 
 
+
     public int getDuplicates() {
         return duplicates;
     }
@@ -30,8 +31,16 @@ public class RefactoredDuplicateFinder {
         return stringPatternCountTwo;
     }
 
+    public int getCount() {
+        return count;
+    }
 
 
+
+    public void upCount(){
+
+        count++;
+    }
 
     public String[] splitTextToArray(String input){
 
@@ -45,7 +54,7 @@ public class RefactoredDuplicateFinder {
         stringPatternCountOne = 0;
         stringPatternCountTwo = 0;
 
-        for (int i = 0; i < input[count].length() - 1; i++) { //counting the patterns in each word
+        for (int i = 0; i < input[count].length() - 1; i++) {
 
             if (input[count].charAt(i) != input[count].charAt(i + 1))
                 stringPatternCountOne++;
@@ -82,8 +91,11 @@ public class RefactoredDuplicateFinder {
 
     public void lengthsEvenAndLessThanSixChar(){
 
-        if (stringPatternCountOne == stringPatternCountTwo && charCount >= 2)
+        if (stringPatternCountOne == stringPatternCountTwo && charCount >= 2) {
             duplicates++;
+            charCount = 0;
+        }
+        count++;
     }
 
     public void lengthsEvenAndMoreThanSixChar(){
@@ -91,7 +103,9 @@ public class RefactoredDuplicateFinder {
         if (stringPatternCountOne - stringPatternCountTwo <= Math.abs(1)) {
 
             duplicates++;
+            charCount = 0;
         }
+        count++;
     }
 
     public void ifStringLengthsAreDifferent(String[] input){
@@ -137,16 +151,19 @@ public class RefactoredDuplicateFinder {
         if (stringPatternCountOne == stringPatternCountTwo && charCount >= 2){
 
             duplicates++;
+            charCount = 0;
 
         }
+        count++;
     }
 
     public void lengthNotEvenAndMoreThanSixChar(){
 
                 if (stringPatternCountOne == stringPatternCountTwo && charCount >= 2){
                     duplicates++;
+                    charCount = 0;
             }
-
+        count++;
         }
 
 }

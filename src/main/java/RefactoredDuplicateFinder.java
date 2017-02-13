@@ -7,7 +7,7 @@ import java.util.Arrays;
 @SuppressWarnings("Duplicates")
 public class RefactoredDuplicateFinder {
 
-    private static int duplicates =0;
+    private static int duplicates = 0;
     private static int count = 0;
     private static int charCount = 0;
     private static int stringPatternCountOne = 0;
@@ -91,7 +91,7 @@ public class RefactoredDuplicateFinder {
 
     public void lengthsEvenAndLessThanSixChar(){
 
-        if (stringPatternCountOne == stringPatternCountTwo && charCount >= 2) {
+        if (stringPatternCountOne == stringPatternCountTwo && charCount >= 3) {
             duplicates++;
             charCount = 0;
         }
@@ -100,7 +100,7 @@ public class RefactoredDuplicateFinder {
 
     public void lengthsEvenAndMoreThanSixChar(){
 
-        if (stringPatternCountOne - stringPatternCountTwo <= Math.abs(1)) {
+        if (stringPatternCountOne - stringPatternCountTwo <= Math.abs(1) &&  charCount >= 2) {
 
             duplicates++;
             charCount = 0;

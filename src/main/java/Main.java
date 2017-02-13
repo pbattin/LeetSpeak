@@ -6,11 +6,11 @@ public class Main {
     public static void main(String[] args) {
 
         RefactoredDuplicateFinder rf = new RefactoredDuplicateFinder();
-        String findDuplicates = "jazz,buzz,fuzzs,f@zzs,fu**s,fizzs,hajj,juju,ju##s,quiz,razz,r@zz,jezz,jexxs,je**s,jeux,j@#k,jinx,jock,j&ck,j0$k,jack,jamb,juku,joky,j0ck,j0k$,jivy,junk,jimp";
+        String findDuplicates = "";
         String[] findDuplicatesArray = rf.splitTextToArray(findDuplicates);
 
 
-        while ((rf.getCount() + 2) < findDuplicatesArray.length) {
+        while ((rf.getCount() + 1) < findDuplicatesArray.length) {
 
 
             if (findDuplicatesArray[rf.getCount()].charAt(0) == findDuplicatesArray[rf.getCount() + 1].charAt(0)) {
@@ -50,7 +50,7 @@ public class Main {
                 } else rf.upCount();
 
             }
-        System.out.println("The total number of duplicates found are " + rf.getDuplicates() + "!");
+        System.out.println("Rough estimate of the total number of duplicates found are " + rf.getDuplicates() + "!");
 
     }
 
